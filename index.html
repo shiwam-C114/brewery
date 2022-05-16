@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        nav{
+            text-align: center;
+            padding: 20px;
+        }
+        nav>a{
+            text-decoration: none;
+            color: #000;
+            padding: 40px;
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="./index.html">Home</a>
+        <a href="./search.html">Search</a>
+        <a href="./individual.html">Individual brewery</a>
+    </nav>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Brewery Type</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th><button>Button</button></th>
+                </tr>
+            </thead>
+            <tbody>
+               
+            </tbody>
+        </table>
+
+    </main>
+
+    <script>
+        async function showMain() {
+            const res = await fetch("https://api.openbrewerydb.org/breweries")
+            const data = await res.json()
+            console.log(data)
+            disp(data)
+        }
+        function disp(data) {
+            let Tbody = document.querySelector("tbody")
+            data.forEach(e => {
+                // console.log(e.brewery_type)
+                let tr = document.createElement("tr")
+                let name = document.createElement("td")
+                let bType = document.createElement("td")
+                let city = document.createElement("td")
+                let state = document.createElement("td")
+                let Button = document.createElement("button")
+                name.innerText = e.name
+                bType.innerText = e.brewery_type
+                city.innerText = e.city
+                state.innerText = e.state
+                Button.textContent = "More Details"
+                tr.append(name, bType, city, state,Button) 
+                Tbody.appendChild(tr)
+            });
+        }
+        showMain()
+    </script>
+</body>
+</html>
