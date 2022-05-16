@@ -38,16 +38,17 @@
             const e = await res.json()
             console.log(e)
             const main = document.querySelector("main")
+
             let card = document.createElement("div")
-                let name = document.createElement("h3 ")
+                let name = document.createElement("h3")
                 let bType = document.createElement("h3")
-                let city = document.createElement("h3 ")
+                let city = document.createElement("h3")
                 let state = document.createElement("h3")
             
-                name.innerText = e.name
-                bType.innerText = e.brewery_type
-                city.innerText = e.city
-                state.innerText = e.state
+                name.innerText ="name: "+ e.name
+                bType.innerText = "type: "+ e.brewery_type
+                city.innerText = "city: " + e.city
+                state.innerText = "state: "+  e.state
 
                 card.append(name, bType, city, state) 
                 main.appendChild(card)
